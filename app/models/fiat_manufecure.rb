@@ -1,0 +1,2 @@
+class FiatManufecture < ApplicationRecord
+end

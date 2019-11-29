@@ -1,0 +1,2 @@
+class Manufecture < ApplicationRecord
+end
