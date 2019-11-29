@@ -1,7 +1,7 @@
 class ManufecturesController < ApplicationController
   
   def index
-    @manufecture = Manufecture.all
+    @manufectures = Manufecture.all
   end
   
   def show
