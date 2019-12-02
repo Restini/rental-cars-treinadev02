@@ -1,27 +1,24 @@
 class HomeController < ApplicationController
 
     def index
-      @manufectures = Manufecture.all
+      @manufacturers = Manufacturer.all
     end
 
     def show
-      @manufecture = Manufecture.find(params[:id])
+      @manufacturer = Manufacturer.find(params[:id])
     end
     
     def new
-      @manufecture = Manufecture.all
+      @manufacturer = Manufacturer.all
     end
     
     def create
-      @manufecture = Manufecture.new(params.require(:manufecture).permit(:name))
-      if @manufecture.save
-        redirect_to @manufecture
-      else
-        render "new"
-      end
+      @manufacturer = Manufacturer.new(params.require(:manufacturer).permit(:name))
+      @manufacturer.save
+      redirect_to @manufacturer
     end
   
     def update
-      @manufecture = Manufecture.find(params[:id])
+      @manufacturer = Manufacturer.find(params[:id])
     end
 end

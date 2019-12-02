@@ -2,10 +2,10 @@ require 'rails_helper'
 
 feature 'Admin view subsidiary' do
   scenario 'successfully' do
-   Subsidiary.create!(name: 'Almeidinha Cars', cnpj: '00.000.000/0000', 
-                      address: 'Alameda Santos, 1293')
-   Subsidiary.create!(name: 'Almeidinha Trucks', cnpj: '00.000.000/0000', 
-                      address: 'Alameda Santos, 1293')                   
+   Subsidiary.create(name: 'Almeidinha Cars', cnpj: '00.000.000/0000', 
+                     address: 'Alameda Santos, 1293')
+   Subsidiary.create(name: 'Almeidinha Trucks', cnpj: '00.000.000/0000', 
+                     address: 'Alameda Santos, 1293')                   
   visit root_path
   click_on 'Filiais'
   

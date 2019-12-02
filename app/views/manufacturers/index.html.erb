@@ -1,5 +1,6 @@
-<%= link_to 'Registrar novo fabricante', inserir qq coisa e ver routes %>
+<h1>Fabricantes</h1>
 
-<% @manufacturers.each do | manufacturer| %>
-<% link_to manufacturer.name, manufacturer %>
-<% end %>
+<p><h2><%= link_to 'Fiat', subsidiaries_path %></h2></p>
+
+<%= link_to 'Registrar novo fabricante', new_manufacturer_path %>
+

@@ -1,2 +1,0 @@
-class FiatManufecture < ApplicationRecord
-end

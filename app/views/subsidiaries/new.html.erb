@@ -1,0 +1,9 @@
+<%= form_for Subsidiary.new do |f| %>
+    <%= f.label :name, 'Name' %>
+    <%= f.text_field :name %>
+    <%= f.label :cnpj, 'CNPJ' %>
+    <%= f.text_field :cnpj %>
+    <%= f.label :address, 'Address' %>
+    <%= f.text_field :address %>
+    <%= f.submit 'Criar' %>
+<% end %>
