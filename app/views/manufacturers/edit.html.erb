@@ -1,1 +1,17 @@
-<h1>Fiat</h1>
+<h1>Atualizar Fabricante</h1>
+
+<% if @manufacturer.errors.any? %>
+  <ul>
+  <% if @manufacturer.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+  <ul>
+<% end %>
+
+<%= form_for Manufacturer.new do |f| %>
+<%= f.label :name, 'Nome' %>
+<%= f.text_field :name %>
+<%= f.submit 'Enviar' %>
+<% end %>
+
+<%= link_to 'Fiat', manufacturers_path %>
