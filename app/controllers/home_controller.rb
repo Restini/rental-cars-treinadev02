@@ -3,8 +3,9 @@ class HomeController < ApplicationController
     def index
       @manufacturers = Manufacturer.all
     end
-
+=begin
     def show
+      id = params[:id]
       @manufacturer = Manufacturer.find(params[:id])
     end
     
@@ -21,4 +22,5 @@ class HomeController < ApplicationController
     def update
       @manufacturer = Manufacturer.find(params[:id])
     end
+=end
 end

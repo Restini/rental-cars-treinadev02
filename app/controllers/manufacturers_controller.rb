@@ -1,10 +1,11 @@
 class ManufacturersController < ApplicationController
   
   def index
-    @manufacturer = Manufacturer.all
+    @manufacturers = Manufacturer.all
   end
   
   def show
+    @manufacturer = Manufacturer.find(params[:id])
   end
 
   def new
@@ -16,23 +17,27 @@ class ManufacturersController < ApplicationController
   end
 
   def create
-    @manufacturer = Manufacturer.new(params.require(:manufacturer).permit(:name))
+    @manufacturer = Manufacturer.new(manufacturer_params)
     
     if @manufacturer.save
       redirect_to @manufacturer
     else
-      flash[:alert] = 'Fabricante atualizado com sucesso'  
-      render :new #usando a view do new 
+      flash.now[:alert] = 'Favor preencher todos os campos'  
+      render :new # using the view of new 
     end
   end
 
   def update
-      @manufacturer = Manufacturer.find(params[:id])
-    if  @manufacturer.update.(manufacturer_params)
-      flash[:notice] = 'Fabricante atualizado com sucesso'
+    @manufacturer = Manufacturer.find(params[:id])
+    if @manufacturer.update(manufacturer_params)
+      flash[:notice] = 'Fabricante atualizada com sucesso'
       redirect_to @manufacturer
     else
       render :edit
     end
   end
+
+  def manufacturer_params
+    params.require(:manufacturer).permit(:name)
+  end  
 end

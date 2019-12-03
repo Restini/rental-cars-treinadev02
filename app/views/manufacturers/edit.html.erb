@@ -1,17 +1,20 @@
-<h1>Atualizar Fabricante</h1>
+<h1>Atualizar fabricante</h1>
 
 <% if @manufacturer.errors.any? %>
+  <p>Você deve corrigir os seguintes erros:</p>
   <ul>
-  <% if @manufacturer.errors.full_messages.each do |message| %>
-  <li><%= message %></li>
+  <% @manufacturer.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
   <% end %>
-  <ul>
+  </ul>
 <% end %>
 
-<%= form_for Manufacturer.new do |f| %>
-<%= f.label :name, 'Nome' %>
-<%= f.text_field :name %>
-<%= f.submit 'Enviar' %>
+<%= form_with model: @manufacturer, local: true do |f| %>
+  <p>
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Enviar' %>
+  </p>
 <% end %>
-
-<%= link_to 'Fiat', manufacturers_path %>
