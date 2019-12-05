@@ -9,16 +9,4 @@
   </ul>
 <% end %>
 
-<%= form_with model: @subsidiary, local: true do |f| %>
-  <p>
-    <%= f.label :name, 'Nome' %>
-    <%= f.text_field :name %>
-    <%= f.label :cnpj, 'CNPJ' %>
-    <%= f.text_field :cnpj %>
-    <%= f.label :address, 'Endereço' %>
-    <%= f.text_field :address %>
-  </p>
-  <p>
-    <%= f.submit 'Enviar' %>
-  </p>
-<% end %>
+<%= render partial: 'form', locals: { subsidiary: @subsidiary } %>
