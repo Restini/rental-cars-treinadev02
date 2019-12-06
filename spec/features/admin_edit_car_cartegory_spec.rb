@@ -4,7 +4,7 @@ feature 'Admin edit car category' do
   scenario 'successfully' do
     CarCategory.create!(name: 'C', daily_rate: 200, car_insurance: 2000,
                         third_party_insurance: 3000)
-
+    
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'C'

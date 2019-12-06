@@ -10,8 +10,13 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+    <% elsif %>
+      <%= link_to 'Entrar', new_user_session_path %>
+    <% end %>
+    
     <%= notice %>
     <%= alert %>
     <%= yield %>
   </body>
-</html>
