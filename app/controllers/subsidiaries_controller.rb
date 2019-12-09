@@ -1,4 +1,5 @@
 class SubsidiariesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :create]
   
   def index
     @subsidiaries = Subsidiary.all
@@ -18,8 +19,13 @@ class SubsidiariesController < ApplicationController
   
   def create
     @subsidiary = Subsidiary.new(subsidiary_params)
-    @subsidiary.save
-    redirect_to @subsidiary
+    
+    if @subsidiary.save
+      redirect_to @subsidiary
+    else
+      flash.now[:alert] = 'Favor preencher todos os campos'  
+      render :new 
+    end
   end
   
   def update

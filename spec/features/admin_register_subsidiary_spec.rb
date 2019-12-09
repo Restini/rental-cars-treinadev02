@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'Admin register subsidiary' do
   scenario 'successfully' do
+    user = User.create!(email:'test@test.com', password:'123456')
+    login_as(user, :scope => :user)
+    
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'
@@ -17,10 +20,12 @@ feature 'Admin register subsidiary' do
   end
 
   scenario 'and must fill in all fields' do
+    user = User.create!(email:'test@test.com', password:'123456')
+    login_as(user, :scope => :user)
+    
     visit root_path
     click_on 'Filiais'
     click_on 'Registrar nova filial'
-
     click_on 'Enviar'
 
     expect(page).to have_content 'Nome não pode ficar em branco'

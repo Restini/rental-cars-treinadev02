@@ -4,6 +4,9 @@ feature 'Admin edit subsidiary' do
   scenario 'successfully' do
     Subsidiary.create!(name: 'Vila Mariana', cnpj: '56.420.114/0001-45',
                        address: 'Rua Domingos de Morais, 1000')
+    user = User.create!(email:'test@test.com', password:'123456')
+    login_as(user, :scope => :user)
+    
     visit root_path
     click_on 'Filiais'
     click_on 'Vila Mariana'
@@ -22,6 +25,8 @@ feature 'Admin edit subsidiary' do
   scenario 'and must fill in all fields' do
     Subsidiary.create!(name: 'Vila Mariana', cnpj: '56.420.114/0001-45',
                        address: 'Rua Domingos de Morais, 1000')
+    user = User.create!(email:'test@test.com', password:'123456')
+    login_as(user, :scope => :user)
 
     visit root_path
     click_on 'Filiais'

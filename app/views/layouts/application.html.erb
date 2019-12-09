@@ -10,12 +10,17 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-    <% elsif %>
-      <%= link_to 'Entrar', new_user_session_path %>
-    <% end %>
     
+    <% if user_signed_in? %>
+      <ul>
+        <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
+      </ul>
+    <% else %>
+      <ul>
+        <li><%= link_to "Entrar", new_user_session_path %></li>
+      </ul>
+    <% end %>      
+
     <%= notice %>
     <%= alert %>
     <%= yield %>

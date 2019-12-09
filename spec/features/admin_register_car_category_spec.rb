@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'Admin register car category' do
   scenario 'successfully' do
+    user = User.create!(email:'test@test.com', password:'123456')
+    login_as(user, :scope => :user)
+    
     visit root_path
     click_on 'Categorias de Carros'
     click_on 'Registrar nova categoria'

@@ -1,4 +1,6 @@
 class CarModelsController < ApplicationController
+    before_action :authenticate_user!, only: [:new, :edit, :create]  
+
     def index
     end
   
@@ -9,13 +11,14 @@ class CarModelsController < ApplicationController
   
     def create
       @car_model = CarModel.new(car_model_params)
+      
       if @car_model.save
         flash[:notice] = 'Modelo registrado com sucesso'
         redirect_to @car_model
       else
         @manufacturers = Manufacturer.all
         @categories = CarCategory.all
-        flash[:alert] = 'Erro'
+        flash.now[:alert] = 'Favor preencher todos os campos'  
         render :new
       end
     end

@@ -1,10 +1,7 @@
-<h3>Filiais</h3>
+<h1>Filiais</h1>
 
 <% if @subsidiaries.empty? %>
-  <p>Não existem filiais cadastradas no sistema.</p>
-  <p>Nome não pode ficar em branco</p>
-  <p>CNPJ não pode ficar em branco</p>
-  <p>Endereço não pode ficar em branco</p>
+  <p>Não existem filiais cadastradas no sistema.</p>  
 <% end %>
 
 <% @subsidiaries.each do |subsidiary| %>

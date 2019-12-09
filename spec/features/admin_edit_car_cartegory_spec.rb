@@ -4,6 +4,8 @@ feature 'Admin edit car category' do
   scenario 'successfully' do
     CarCategory.create!(name: 'C', daily_rate: 200, car_insurance: 2000,
                         third_party_insurance: 3000)
+    user = User.create!(email:'test@test.com', password:'123456')
+    login_as(user, :scope => :user)
     
     visit root_path
     click_on 'Categorias de Carros'

@@ -1,4 +1,6 @@
 class ClientsController < ApplicationController
+    before_action :authenticate_user!, only: [:new, :edit, :create]
+  
     def index
       @clients = Client.all
     end

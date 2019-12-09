@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'User register client' do
   scenario 'successfully' do
+    user = User.create!(email:'test@test.com', password:'123456')
+    login_as(user, :scope => :user)
+    
     visit root_path
     click_on 'Clientes'
     click_on 'Registrar novo cliente'
@@ -17,6 +20,9 @@ feature 'User register client' do
   end
 
   scenario 'and must fill in all fields' do
+    user = User.create!(email:'test@test.com', password:'123456')
+    login_as(user, :scope => :user)
+    
     visit root_path
     click_on 'Clientes'
     click_on 'Registrar novo cliente'

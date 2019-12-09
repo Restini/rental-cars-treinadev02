@@ -1,4 +1,6 @@
 class CarCategoriesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :create]
+
   def index
     @car_categories = CarCategory.all
   end
@@ -17,8 +19,13 @@ class CarCategoriesController < ApplicationController
 
   def create
     @car_category = CarCategory.new(car_category_params)
-    @car_category.save
-    redirect_to @car_category
+    
+    if @car_category.save
+      redirect_to @car_category
+    else
+      flash.now[:alert] = 'Favor preencher todos os campos'  
+      render :new 
+    end
   end
 
   def update

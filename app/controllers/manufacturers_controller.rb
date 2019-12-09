@@ -1,7 +1,7 @@
 class ManufacturersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authorize_admin, 
-  before_action :set_manufacturer, only: [:show, :edit, :update] 
+  before_action :authenticate_user!, only: [:new, :edit, :create]
+  #before_action :authorize_admin 
+  #before_action :set_manufacturer 
 
   def index
     @manufacturers = Manufacturer.all
@@ -26,7 +26,7 @@ class ManufacturersController < ApplicationController
       redirect_to @manufacturer
     else
       flash.now[:alert] = 'Favor preencher todos os campos'  
-      render :new # using the view of new 
+      render :new 
     end
   end
 
@@ -44,9 +44,9 @@ class ManufacturersController < ApplicationController
     params.require(:manufacturer).permit(:name)
   end  
 
-  def authorize_admin
-    unless current_user.admin?
-    flash[:notice] = 'Você não tem autorização'
-    redirect_to root_path 
-  end
+  #def authorize_admin
+  #  unless current_user.admin?
+  #  flash[:notice] = 'Você não tem autorização'
+  #  redirect_to root_path 
+  #end
 end
