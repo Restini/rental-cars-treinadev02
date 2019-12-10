@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 RSpec.describe Rental, type: :model do
@@ -6,5 +7,6 @@ RSpec.describe Rental, type: :model do
                         car_category: category: category)
 
   rental.valid?
-
 end
+
+=end

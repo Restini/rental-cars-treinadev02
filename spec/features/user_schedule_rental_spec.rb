@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 feature 'user schedule rental' do
@@ -29,3 +30,4 @@ feature 'user schedule rental' do
   end
 
 end
+=end

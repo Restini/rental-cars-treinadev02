@@ -39,5 +39,5 @@ class CarModelsController < ApplicationController
       @manufacturers = Manufacturer.all
       @categories = CarCategory.all
     end
-  
   end
+  

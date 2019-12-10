@@ -1,0 +1,9 @@
+<h1>Carros</h1>
+
+<%= link_to 'Cadastrar novo carro', new_car_path %>
+
+<% @cars.each do |car| %>
+  <ul>
+    <li><%= car.license_plate %></li>
+  </ul>
+<% end %>

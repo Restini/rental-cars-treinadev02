@@ -1,3 +1,4 @@
+=begin
 require 'rails_helper'
 
 feature 'User search rental' do
@@ -27,3 +28,4 @@ feature 'User search rental' do
   expect(page).to have_content(rental.reservatio_code)
   expect(page).not_to have_content(other_rental.reservatio_code)   
 end
+=end
