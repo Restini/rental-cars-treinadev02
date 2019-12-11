@@ -10,22 +10,28 @@ feature 'User search rental' do
   category = CarCategory.create(name: 'A', daily_rate: 30, car_insurence: 30,
                                 third_party_insurance: 30)
 
-  rental = Rental.create(client: client, car_category: category,
+  rental_1 = Rental.create(client: client, car_category: category,
                          start_date: 1.day.from_now, 
                          end_date: 2.days.from_now, 
                          reservation_code:'ABC1234')
 
-  rental = Rental.create(client: client, car_category: category,
+  rental_2 = Rental.create(client: client, car_category: category,
+                         start_date: 1.day.from_now, 
+                         end_date: 2.days.from_now, 
+                         reservation_code:'ABC1234')
+
+  other_rental = Rental.create(client: client, car_category: category,
                          start_date: 1.day.from_now, 
                          end_date: 2.days.from_now, 
                          reservation_code:'ABC1234')
 
   visit root_path
   click_on 'Locações'
-  fill_in 'Códigom', with: rental.reservatio_code
+  fill_in 'Código', with: rental.reservatio_code
   click_on 'Buscar'
 
-  expect(page).to have_content(rental.reservatio_code)
-  expect(page).not_to have_content(other_rental.reservatio_code)   
+  expect(page).to have_content(rental_1.reservation_code)
+  expect(page).to have_content(rental_2.reservation_code)
+  expect(page).not_to have_content(other_rental.reservation_code)   
 end
 =end

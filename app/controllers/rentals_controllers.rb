@@ -8,12 +8,21 @@ class RentalsController < ApplicationController
   end
   
   def show
-    @rentals = Rental.all.find(params[:id])
+    @rentals = Rental.find(params[:id])
+    @cars = Car.join(car_model).where(car_models: {car_category: @rental.category})
   end
 
   def new
-    @rentals = Rental.all.new
-    @client = Client.all #Populando o Select 
+    @rentals = Rental.new
+    @client = Client.all #Populando o Select
+    @car_categories = CarCategory.all 
+  end
+
+  def start
+    @rental = Rental.find(params[:id])
+    @rental.in_progress!
+    flash.now[:alert] = 'Locação iniciada com sucesso'
+    redirect_to @rental
   end
 
   def edit
@@ -43,4 +52,12 @@ class RentalsController < ApplicationController
 
   def manufacturer_params
     params.require(:rental).permit(:name)
-  end  
+  end 
+
+  def search
+    @rentals = Rental.where(conservation_code: params[:q])
+
+    render :index
+  end
+  
+end

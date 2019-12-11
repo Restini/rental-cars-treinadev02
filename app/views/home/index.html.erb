@@ -6,8 +6,3 @@
 <p><%= link_to 'Fabricantes', manufacturers_path %></p>
 <p><%= link_to 'Filiais', subsidiaries_path %></p>
 <p><%= link_to 'Clientes', clients_path %></p>
-
-<%= form_tag(subsidiaries_path, method: :get) do %>
-    <%= text_field_tag 'search', nil, placeholder: 'Enter search term...' %>
-    <%= submit_tag "Search" %>
-<% end %>

@@ -1,3 +1,13 @@
 <p>Data de inicio: <%= @rental.start_date.strftime('%d,%m,%y') %></p>
 <p>Data de fim: <%= @rental.end_date.strftime('%d,%m,%y') %></p>
 
+<h3>Cliente</h3>
+
+<p><%= @rental.cliente.name %></p>
+<p><%= @rental.cliente.document %></p>
+
+<p>Category</p>
+<p><%= car_category.name %></p>
+
+<%= form_with model: @rental, url: start_rental_path, method: :past  do |f| %>
+<%= f.label :car_id ''%>
