@@ -1,7 +1,7 @@
 class RentalsController < ApplicationController
-  #before_action :authenticate_user!, only: [:new, :edit, :create]
-  #before_action :authorize_admin 
-  #before_action :set_manufacturer 
+  before_action :authenticate_user!, only: [:new, :edit, :create]
+  before_action :authorize_admin 
+  before_action :set_manufacturer 
 
   def index
     @rentals = Rental.all
@@ -20,34 +20,28 @@ class RentalsController < ApplicationController
 
   def start
     @rental = Rental.find(params[:id])
-    @rental.in_progress!
-    flash.now[:alert] = 'Locação iniciada com sucesso'
-    redirect_to @rental
-  end
-
-  def edit
-    @rentals = Rental.all.find(params[:id])
+		@rental.in_progress!
+		@rental.update(status: :in_progress)
+		
+		@car = Car.find(params[:rental][:car_id])
+		@car.unavailable!
+		@rental.create_car_rental(car: @car, price: @car.price)
+		flash[:notice] = 'Locação iniciada com sucesso'
+		redirect_to @rental
+		end
   end
 
   def create
-    @rentals = Rental.all.new(rental_params)
-    
-    if @rental.save
-      redirect_to @rentals
-    else
-      flash.now[:alert] = 'Favor preencher todos os campos'  
-      redirect_to 
-    end
-  end
-
-  def update
-    @rentals = Rental.all.find(params[:id])
-    if @rentals.update(manufacturer_params)
-      flash[:notice] = 'Fabricante atualizada com sucesso'
-      redirect_to @rentals
-    else
-      render :edit
-    end
+    @rental = Rental.new(params.require(:rental).permit(:start_date, :end_date,
+                                                        :client_id,
+                                                        :car_category_id))
+		if @rental.save
+		  redirect_to @rental, notice: 'Locação agendada com sucesso'
+		else
+      @clients = Client.all
+      @car_categories = CarCategory.all
+      render :new
+		end
   end
 
   def manufacturer_params
@@ -56,7 +50,6 @@ class RentalsController < ApplicationController
 
   def search
     @rentals = Rental.where(conservation_code: params[:q])
-
     render :index
   end
   

@@ -1,8 +1,10 @@
 class CarCategoriesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :create]
+  before_action :authenticate_user!, 
 
   def index
     @car_categories = CarCategory.all
+    @cars = Car.all
+    @car_models = CarModel.all
   end
 
   def show
@@ -34,10 +36,18 @@ class CarCategoriesController < ApplicationController
     redirect_to @car_category
   end
 
+  def destroy
+    car_category = CarCategory.find(params[:id])
+    car_category.destroy 
+    redirect_to root_path
+  end
+
   private
 
   def car_category_params
     params.require(:car_category).permit(:name, :daily_rate, :car_insurance,
-                                        :third_party_insurance)
+                                        :third_party_insurance, :car_id,
+                                        :car_model_id)
   end
+
 end

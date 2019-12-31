@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_10_181329) do
+ActiveRecord::Schema.define(version: 2019_12_31_190420) do
 
   create_table "car_categories", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(version: 2019_12_10_181329) do
     t.decimal "third_party_insurance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "car_id"
+    t.integer "car_model_id"
+    t.index ["car_id"], name: "index_car_categories_on_car_id"
+    t.index ["car_model_id"], name: "index_car_categories_on_car_model_id"
   end
 
   create_table "car_models", force: :cascade do |t|
@@ -32,6 +36,16 @@ ActiveRecord::Schema.define(version: 2019_12_10_181329) do
     t.datetime "updated_at", null: false
     t.index ["car_category_id"], name: "index_car_models_on_car_category_id"
     t.index ["manufacturer_id"], name: "index_car_models_on_manufacturer_id"
+  end
+
+  create_table "car_rentals", force: :cascade do |t|
+    t.integer "car_id"
+    t.integer "rental_id"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_car_rentals_on_car_id"
+    t.index ["rental_id"], name: "index_car_rentals_on_rental_id"
   end
 
   create_table "cars", force: :cascade do |t|
@@ -58,6 +72,19 @@ ActiveRecord::Schema.define(version: 2019_12_10_181329) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rentals", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "client_id"
+    t.integer "car_category_id"
+    t.string "reservation_code"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_category_id"], name: "index_rentals_on_car_category_id"
+    t.index ["client_id"], name: "index_rentals_on_client_id"
   end
 
   create_table "subsidiaries", force: :cascade do |t|

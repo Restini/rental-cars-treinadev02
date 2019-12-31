@@ -15,5 +15,13 @@
       <%= f.label :third_party_insurance, 'Seguro para Terceiros' %>
       <%= f.text_field :third_party_insurance %>
     </div>
+    <div>
+      <%= f.label :car_id, 'Carro' %>
+      <%= f.collection_select(:car_id, @cars, :id, :license_plate)  %>
+    </div> 
+    <div>
+      <%= f.label :car_model_id, 'Modelo' %>
+      <%= f.collection_select(:car_model_id, @car_models, :id, :name)  %>
+    </div>
     <%= f.submit 'Enviar' %>
   <% end %>

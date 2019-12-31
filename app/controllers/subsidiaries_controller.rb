@@ -1,5 +1,5 @@
 class SubsidiariesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :create]
+  before_action :authenticate_user!
   
   def index
     @subsidiaries = Subsidiary.all
@@ -28,12 +28,6 @@ class SubsidiariesController < ApplicationController
     end
   end
 
-  def destroy
-    subsidiary = Subsidiary.find(params[:id]) 
-    subsidiary.destroy 
-    redirect_to root_path
-  end
-
   def update
     @subsidiary = Subsidiary.find(params[:id])
     if @subsidiary.update(subsidiary_params)
@@ -42,6 +36,12 @@ class SubsidiariesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    subsidiary = Subsidiary.find(params[:id]) 
+    subsidiary.destroy 
+    redirect_to root_path
   end
 
   private

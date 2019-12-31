@@ -6,6 +6,8 @@ feature 'Admin view car categories' do
                         third_party_insurance: 1499)
     CarCategory.create!(name: 'B', daily_rate: 149, car_insurance: 1500,
                         third_party_insurance: 1999)
+    user = User.create!(email:'test@test.com', password:'123456')
+    login_as(user, :scope => :user)                    
 
     visit root_path
     click_on 'Categorias de Carros'
@@ -20,6 +22,8 @@ feature 'Admin view car categories' do
                         third_party_insurance: 1499)
     CarCategory.create!(name: 'B', daily_rate: 149, car_insurance: 1500,
                         third_party_insurance: 1999)
+    user = User.create!(email:'test@test.com', password:'123456')
+    login_as(user, :scope => :user)
 
     visit root_path
     click_on 'Categorias de Carros'

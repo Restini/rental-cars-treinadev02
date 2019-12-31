@@ -1,13 +1,11 @@
 <h1>Categorias de Carro</h1>
 
 <table>
-  <th>
-    <td>Nome</td>
-  </th>
-  <% @car_categories.each do |category| %>
+  <p>Nome</p>
+    <% @car_categories.each do |category| %>
     <tr>
       <td>
-        <%= link_to category.name, category %>
+        <p><%= link_to category.name, category %></p>
       </td>
     </tr>
   <% end %>

@@ -10,6 +10,7 @@ class CarsController < ApplicationController
       
     def new
       @car = Car.new
+      set_collections
     end
   
     def edit
@@ -18,8 +19,7 @@ class CarsController < ApplicationController
     
     def create
       @car = Car.new(car_params)
-      #set_collections
-      
+            
       if @car.save
         redirect_to @car
       else
@@ -45,13 +45,14 @@ class CarsController < ApplicationController
     end
   
     def set_collections
-      @car_models = Car_model.all
-      @subsidiaries = Subsidiarie.all
+      @car_models = CarModel.all
+      @subsidiaries = Subsidiary.all
     end
 
     private
   
     def car_params
-      params.require(:car).permit(:license_plate, :color, :mileage)
+      params.require(:car).permit(:license_plate, :color, :mileage, :car_model_id,
+                                  :subsidiary_id)
     end
   end

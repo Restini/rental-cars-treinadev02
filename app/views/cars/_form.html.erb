@@ -16,8 +16,8 @@
     <%= f.text_field :color %>
   </div>
   <div>
-    <%= f.label :car_model, 'Modelo' %>
-    <%= f.text_field :car_model %>
+  <%= f.label :car_model_id, 'Modelo' %>
+  <%= f.collection_select(:car_model_id, @car_models, :id, :name)  %>
   </div>
   <div>
     <%= f.label :mileage, 'Km' %>
@@ -25,7 +25,10 @@
   </div>
   <div>
     <%= f.label :subsidiary, 'Filial' %>
-    <%= f.text_field :subsidiary %>
+    <%= f.collection_select(:subsidiary_id, @subsidiaries, :id, :name)  %>
   </div>
   <%= f.submit 'Enviar' %>
 <% end %>
+
+
+   
