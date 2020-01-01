@@ -1,20 +1,19 @@
 class RentalsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :create]
-  before_action :authorize_admin 
-  before_action :set_manufacturer 
+  #before_action :authenticate_user!, only: [:new, :edit, :create]
+  #before_action :authorize_admin 
+  #before_action :set_manufacturer 
 
   def index
-    @rentals = Rental.all
   end
-  
+
   def show
-    @rentals = Rental.find(params[:id])
+    @rental = Rental.find(params[:id])
     @cars = Car.join(car_model).where(car_models: {car_category: @rental.category})
   end
 
   def new
-    @rentals = Rental.new
-    @client = Client.all #Populando o Select
+    @rental = Rental.new
+    @clients = Client.all #Populando o Select
     @car_categories = CarCategory.all 
   end
 
@@ -28,8 +27,7 @@ class RentalsController < ApplicationController
 		@rental.create_car_rental(car: @car, price: @car.price)
 		flash[:notice] = 'Locação iniciada com sucesso'
 		redirect_to @rental
-		end
-  end
+	end
 
   def create
     @rental = Rental.new(params.require(:rental).permit(:start_date, :end_date,
@@ -44,13 +42,19 @@ class RentalsController < ApplicationController
 		end
   end
 
+  def destroy
+    rental = Rental.find(params[:id])
+    rental.destroy 
+    redirect_to root_path
+  end
+  
   def manufacturer_params
     params.require(:rental).permit(:name)
   end 
 
   def search
-    @rentals = Rental.where(conservation_code: params[:q])
-    render :index
-  end
-  
+		@rentals = Rental.where('reservation_code like ?', "%#{params[:q]}%")
+		render :index
+	end
+
 end

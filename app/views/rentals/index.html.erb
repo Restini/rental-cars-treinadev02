@@ -1,13 +1,15 @@
-<%= <%= link_to 'Agendar locação', new_rentaç_path %>
+<p><%= link_to 'Agendar locação', new_rental_path %></p>
 
-<%= form_with url: search_rental_search_path, local: true, method: :get do %>
+  <%= form_with url: search_rentals_path, local: true, method: :get do %>
   <%= label_tag :q, 'Código' %>
-  <%= test_field_tag :q %>
+  <%= text_field_tag :q %>
   <%= submit_tag 'Buscar' %>
-<% end %>
+  <% end %>
+  
+  <%= render partial: 'rental', collection: @rentals %>
+  <% if @rentals.present? %>
+  <%= render @rentals %>
+  <% end %>
 
-<%= render partial: 'rental', collection: @rentals %>
-<% if @rentals.present? %>
-<%= render @rentals %>
-<% end %>
-
+  <p><%= link_to 'Voltar', root_path %></p>
+  
