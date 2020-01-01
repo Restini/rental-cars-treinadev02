@@ -21,6 +21,12 @@ class ClientsController < ApplicationController
         render :new
       end
     end
+
+    def destroy
+      client = Client.find(params[:id])
+      client.destroy 
+      redirect_to root_path
+    end
   
     private
   

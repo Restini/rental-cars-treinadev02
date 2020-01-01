@@ -12,6 +12,5 @@ Rails.application.routes.draw do
     post 'start', on: :member
   end
   resources :cars
-
-  delete 'subsidiaries/:id', controller: 'subsidiaries', action: 'destroy'
+  
 end

@@ -1,7 +1,13 @@
 <h1>Fabricantes</h1>
 
-<%= link_to 'Registrar novo fabricante', new_manufacturer_path %>
-
 <% @manufacturers.each do |manufacturer| %>
   <%= link_to manufacturer.name, manufacturer %>
 <% end %>
+
+<p><%= link_to 'Registrar novo fabricante', new_manufacturer_path %></p>
+
+<% @manufacturers.each do |manufacturer| %>
+ <p><%= link_to 'Deletar fabricante', manufacturer_path(manufacturer), method: :delete %></p>
+<% end %>
+
+<p><%= link_to 'Voltar', root_path %></p>

@@ -28,6 +28,12 @@ class ManufacturersController < ApplicationController
     end
   end
 
+  def destroy
+    manufacturer = Manufacturer.find(params[:id])
+    manufacturer.destroy
+    redirect_to root_path
+  end
+
   def update
     @manufacturer = Manufacturer.find(params[:id])
     if @manufacturer.update(manufacturer_params)

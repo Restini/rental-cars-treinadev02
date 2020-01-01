@@ -7,8 +7,8 @@ class Rental < ApplicationRecord
   validate :end_date_must_be_greater_than_start_date,
   :start_date_equal_or_greater_than_today
   # validate :cars_available, on: :create
-  has_one :car_rental
-  has_one :car, through: :car_rental
+  has_one :car_rental, dependent: :destroy
+  has_one :car, through: :car_rental, dependent: :destroy
   
   def end_date_must_be_greater_than_start_date
     return unless start_date.present? && end_date.present?
