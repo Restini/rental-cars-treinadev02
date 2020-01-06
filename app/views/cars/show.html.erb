@@ -2,4 +2,6 @@
 <p>Placa: <%= @car.license_plate %></p>
 <p>Quilometragem: <%= @car.mileage %></p>
 <p>Cor: <%= @car.color %></p>
-<p>Subsidiaria: <%= @car.subsidiary.name %></p>
+<p>Filial: <%= @car.subsidiary.name %></p>
+
+<p><%= link_to 'Voltar', cars_path %></p>

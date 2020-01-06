@@ -1,19 +1,20 @@
 class RentalsController < ApplicationController
-  #before_action :authenticate_user!, only: [:new, :edit, :create]
-  #before_action :authorize_admin 
-  #before_action :set_manufacturer 
+  before_action :authenticate_user!
+  #before_action :set_manufacturer
+  #before_action :authorize_admin
 
   def index
+    @rentals = Rental.all
   end
 
   def show
     @rental = Rental.find(params[:id])
-    @cars = Car.join(car_model).where(car_models: {car_category: @rental.category})
+    #@cars = Car.join(car_model).where(car_models: {car_category: @rental.category})
   end
 
   def new
     @rental = Rental.new
-    @clients = Client.all #Populando o Select
+    @clients = Client.all
     @car_categories = CarCategory.all 
   end
 
@@ -30,7 +31,8 @@ class RentalsController < ApplicationController
 	end
 
   def create
-    @rental = Rental.new(params.require(:rental).permit(:start_date, :end_date,
+    @rental = Rental.new(params.require(:rental).permit(:reservation_code,
+                                                        :start_date, :end_date,
                                                         :client_id,
                                                         :car_category_id))
 		if @rental.save
@@ -55,6 +57,6 @@ class RentalsController < ApplicationController
   def search
 		@rentals = Rental.where('reservation_code like ?', "%#{params[:q]}%")
 		render :index
-	end
-
+  end
+  
 end

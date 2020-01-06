@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   resources :car_categories
   resources :clients
   resources :car_models
-  resources :rentals do
+  resources :cars
+  resources :rentals do 
     get 'search', on: :collection
     post 'start', on: :member
   end
-  resources :cars
-  
+    
 end

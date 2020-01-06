@@ -6,7 +6,7 @@ class Rental < ApplicationRecord
   validates :end_date, presence: { message: 'Data de fim não pode ficar em branco' }
   validate :end_date_must_be_greater_than_start_date,
   :start_date_equal_or_greater_than_today
-  # validate :cars_available, on: :create
+  #validate :cars_available, on: :create
   has_one :car_rental, dependent: :destroy
   has_one :car, through: :car_rental, dependent: :destroy
   

@@ -1,4 +1,14 @@
 <h1>Modelos de Carro</h1>
 
+<% @car_model.each do |model|%>
+ <h3><%= model.name %></h3>
+ <dl>
+  <dt>Ano:</dt>
+  <dd><%= model.year %></dd>
+  <dt>Fabricante:</dt>
+  <dd><%= model.manufacturer.name %></dd>
+ </dl>
+<% end %>
+
 <%= link_to 'Registrar novo modelo', new_car_model_path %>
 <p><%= link_to 'Voltar', root_path %></p>

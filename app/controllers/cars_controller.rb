@@ -1,7 +1,9 @@
 class CarsController < ApplicationController
-        
+    before_action :authenticate_user!  
+  
     def index
       @cars = Car.all
+      @car_models = CarModel.all
     end
   
     def show
@@ -15,6 +17,7 @@ class CarsController < ApplicationController
   
     def edit
       @car = Car.find(params[:id])
+      set_collections
     end
     
     def create

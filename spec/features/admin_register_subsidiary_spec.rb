@@ -7,7 +7,7 @@ feature 'Admin register subsidiary' do
     
     visit root_path
     click_on 'Filiais'
-    click_on 'Registrar nova filial'
+    click_on 'Cadastrar filial'
 
     fill_in 'Nome', with: 'Vila Mariana'
     fill_in 'CNPJ', with: '56.420.114/0001-45'
@@ -25,7 +25,7 @@ feature 'Admin register subsidiary' do
     
     visit root_path
     click_on 'Filiais'
-    click_on 'Registrar nova filial'
+    click_on 'Cadastrar filial'
     click_on 'Enviar'
 
     expect(page).to have_content 'Nome não pode ficar em branco'

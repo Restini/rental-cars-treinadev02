@@ -6,10 +6,10 @@
 
 <% @subsidiaries.each do |subsidiary| %>
   <p><%= link_to subsidiary.name, subsidiary %></p>
-  <p><%= link_to 'Apagar filial', subsidiary_path(subsidiary), method: :delete %></p>
+  <p><%= link_to 'Deletar filial', subsidiary_path(subsidiary), method: :delete %></p>
 <% end %>
-  <p><%= link_to 'Registrar nova filial', new_subsidiary_path %></p>
-  <p><%= link_to 'Cadastrar novo carro', new_car_path %></p>
+  <p><%= link_to 'Cadastrar filial', new_subsidiary_path %></p>
+  <p><%= link_to 'Cadastrar carro', new_car_path %></p>
   <p><%= link_to 'Carros cadastrados', cars_path %></p>
   <p><%= link_to 'Voltar', root_path %></p>
   

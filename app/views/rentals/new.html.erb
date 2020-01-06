@@ -11,6 +11,10 @@
 
 <%= form_with model: @rental, local: true do |f| %>
   <div>
+    <%= f.label :reservation_code, 'Código de reserva' %>
+    <%= f.text_field :reservation_code %>
+  </div>
+  <div>
     <%= f.label :start_date, 'Data de início' %>
     <%= f.date_field :start_date %>
   </div>

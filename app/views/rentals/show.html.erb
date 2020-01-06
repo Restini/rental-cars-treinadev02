@@ -1,3 +1,6 @@
+<h1>Locação</h1>
+
+<p>Código de reserva: <%= @rental.reservation_code %></p>
 <p>Data de início: <%= @rental.start_date.strftime('%d/%m/%Y') %></p>
 <p>Data de fim: <%= @rental.end_date.strftime('%d/%m/%Y') %></p>
 
@@ -18,3 +21,5 @@
 <% elsif @rental.in_progress? %>
   <%= @rental.car.name %>
 <% end %>
+
+<p><%= link_to 'Voltar', rentals_path %></p>

@@ -19,15 +19,13 @@ feature 'Admin register car model' do
     fill_in 'Motorização', with: '1.0'
     fill_in 'Combustível', with: 'Flex'
     select 'Chevrolet', from: 'Fabricante'
-    select 'A', from: 'Categoria'
-
+    
     click_on 'Enviar'
 
     expect(page).to have_content('Modelo registrado com sucesso')
-    expect(page).to have_css('h1', text: 'Onix')
+    expect(page).to have_content('Onix')
     expect(page).to have_content('Ano: 2020')
     expect(page).to have_content('Fabricante: Chevrolet')
-    expect(page).to have_content('Categoria: A')
   end
 
   scenario 'validate mandatory fields' do
