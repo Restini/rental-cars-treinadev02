@@ -3,6 +3,7 @@ class SubsidiariesController < ApplicationController
   
   def index
     @subsidiaries = Subsidiary.all
+    @users = User.all
   end
 
   def show

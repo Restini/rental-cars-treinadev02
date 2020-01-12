@@ -1,15 +1,14 @@
 <h1>Filiais</h1>
 
-<% if @subsidiaries.empty? %>
-  <p>Não existem filiais cadastradas no sistema.</p>  
-<% end %>
+  <% if @subsidiaries.empty? %>
+    <p>Não existem filiais cadastradas no sistema.</p>  
+  <% end %>
 
-<% @subsidiaries.each do |subsidiary| %>
-  <p><%= link_to subsidiary.name, subsidiary %></p>
-  <p><%= link_to 'Deletar filial', subsidiary_path(subsidiary), method: :delete %></p>
-<% end %>
-  <p><%= link_to 'Cadastrar filial', new_subsidiary_path %></p>
-  <p><%= link_to 'Cadastrar carro', new_car_path %></p>
-  <p><%= link_to 'Carros cadastrados', cars_path %></p>
-  <p><%= link_to 'Voltar', root_path %></p>
-  
+  <% @subsidiaries.each do |subsidiary| %>
+    <p><%= link_to subsidiary.name, subsidiary %></p>
+    <p><%= link_to 'Deletar filial', subsidiary_path(subsidiary), method: :delete %></p>
+  <% end %>
+    <p><%= link_to 'Cadastrar filial', new_subsidiary_path %></p>
+    <p><%= link_to 'Cadastrar carro', new_car_path %></p>
+    <p><%= link_to 'Carros cadastrados', cars_path %></p>
+    <p><%= link_to 'Voltar', root_path %></p>

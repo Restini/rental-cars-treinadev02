@@ -5,17 +5,20 @@ class RentalsController < ApplicationController
 
   def index
     @rentals = Rental.all
+    @car_models = CarModel.all
   end
 
   def show
     @rental = Rental.find(params[:id])
     #@cars = Car.join(car_model).where(car_models: {car_category: @rental.category})
+    @cars = Car.all 
   end
 
   def new
     @rental = Rental.new
     @clients = Client.all
     @car_categories = CarCategory.all 
+    @cars = Car.all 
   end
 
   def start
@@ -33,7 +36,7 @@ class RentalsController < ApplicationController
   def create
     @rental = Rental.new(params.require(:rental).permit(:reservation_code,
                                                         :start_date, :end_date,
-                                                        :client_id,
+                                                        :client_id, :status,
                                                         :car_category_id))
 		if @rental.save
 		  redirect_to @rental, notice: 'Locação agendada com sucesso'
@@ -58,5 +61,5 @@ class RentalsController < ApplicationController
 		@rentals = Rental.where('reservation_code like ?', "%#{params[:q]}%")
 		render :index
   end
-  
+
 end

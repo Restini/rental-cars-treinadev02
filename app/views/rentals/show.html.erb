@@ -15,11 +15,12 @@
 <% if @rental.scheduled? %>
   <%= form_with model: @rental, url: start_rental_path, method: :post do |f| %>
   <%= f.label :car_id, 'Carro' %>
-  <%= f.collection_select :car_id, @cars, :id, :name %>
+  <%= f.collection_select :car_id, @cars, :id, :license_plate %>
   <%= f.submit 'Iniciar Locação' %>
   <% end %>
 <% elsif @rental.in_progress? %>
-  <%= @rental.car.name %>
+  <h3>Status</h3>
+  <%= @rental.status %>
 <% end %>
 
 <p><%= link_to 'Voltar', rentals_path %></p>

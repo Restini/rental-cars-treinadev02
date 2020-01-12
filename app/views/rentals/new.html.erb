@@ -28,6 +28,14 @@
     <%= f.label :car_category_id, 'Categoria do Carro' %>
     <%= f.collection_select :car_category_id, @car_categories, :id, :name %>
   </div>
+  <div>
+    <%= f.label :car_id, 'Placa do Carro' %>
+    <%= f.collection_select :car_id, @cars, :id, :license_plate %>
+  </div>
+  <div>
+    <%= f.label :status, 'Status' %>
+    <%= f.select(:status, Rental.statuses.keys.map {|status| [status.titleize,status]}) %>
+  </div>
   <p><%= f.submit 'Enviar' %></p>
 <% end %>
 
